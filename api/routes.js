@@ -2,14 +2,16 @@ require('./config.js');
 var Person = require('./schema.js');
 
 module.exports = function(app) {
-	// serve up the full collection of people born in 1955
+// all.js
+// 	serve up the full collection of people born in 1955
 	app.get('/',function(request,response) {
 		Person.find({},function(err,data) {
 			response.json(data);
 		})
 	})
 
-	// add a name into the database. can be used for 
+// new.js
+	// 	add a name into the database. can be used for 
 	// blank spaces, so adding Steve Jobs to our database, 
 	// you'd type in the URL 'localhost:8000/new/Steve Jobs'
 	app.get('/new/:name/',function(request,response) {
@@ -32,7 +34,8 @@ module.exports = function(app) {
 		})
 	})
 
-	// delete a name from the database.
+// remove.js
+// 	delete a name from the database.
 	app.get('/remove/:name/',function(request,response) {
 		var query = {
 			name: request.params.name
@@ -68,7 +71,8 @@ module.exports = function(app) {
 		})
 	})
 
-	// bring up the document of that particular person.
+// single.js
+// 	bring up the document of that particular person.
 	app.get('/:name',function(request,response) {
 		var query = {
 			name: request.params.name
